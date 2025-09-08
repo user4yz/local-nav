@@ -1,0 +1,8 @@
+{
+  "type": "module",
+  "scripts": {
+    "build": "esbuild src/index.js --bundle --platform=node --outfile=dist/index.js",
+    "test": "jest",
+    "prepublishOnly": "npm run build"
+  }
+}

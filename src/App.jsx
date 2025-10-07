@@ -96,6 +96,12 @@ export default function App() {
       img.src = url;
     }
 
+    // Quick fallback: set a reliable background immediately while Bing loads
+    preloadAndSet(
+      "https://source.unsplash.com/1920x1080/?nature,landscape",
+      null
+    );
+
     function tryBing(i = 0) {
       const bingJson =
         "https://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1&mkt=zh-CN";
@@ -138,7 +144,6 @@ export default function App() {
       const seed = new Date().toISOString().slice(0, 10).replace(/-/g, "");
       const candidates = [
         "https://picsum.photos/seed/" + seed + "/1920/1080",
-        "https://source.unsplash.com/1920x1080/?nature,landscape",
         "https://images.unsplash.com/photo-1501785888041-af3ef285b470?q=80&w=1920&auto=format&fit=crop",
       ];
       let j = 0;
@@ -304,9 +309,16 @@ export default function App() {
       {/* Backgrounds */}
       <div
         id="bingBg"
-        className="fixed inset-0 -z-20 bg-center bg-cover opacity-60 dark:opacity-40"
-        style={{ backgroundImage: bgUrl ? `url("${bgUrl}")` : undefined }}
-      />
+        className="fixed inset-0 -z-20 opacity-60 dark:opacity-40"
+      >
+        {bgUrl && (
+          <img
+            src={bgUrl}
+            alt=""
+            className="w-full h-full object-cover"
+          />
+        )}
+      </div>
       <div ref={cursorGlowRef} id="cursorGlow" className="fixed inset-0 -z-5 pointer-events-none"></div>
 
       {/* Header */}

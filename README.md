@@ -8,7 +8,8 @@
 
 - React 18 + Vite
 - @heroui/react 2.8.5（基于 Tailwind）
-- Tailwind CSS（darkMode: class）
+- @heroui/theme 2.4.23（Tailwind 插件）
+- Tailwind CSS 4.1.14（darkMode: class）
 - Font Awesome（CDN）
 - canvas-confetti（收藏时彩带反馈）
 

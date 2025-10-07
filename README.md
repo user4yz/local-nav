@@ -12,20 +12,32 @@
 - Font Awesome（CDN）
 - canvas-confetti（收藏时彩带反馈）
 
-## 本地开发
+## 使用 pnpm
+
+本项目使用 pnpm 进行安装与构建，`package.json` 中已设定：
+```json
+{ "packageManager": "pnpm@10.18.1" }
+```
+
+如尚未启用 Corepack，请先执行：
+```bash
+corepack enable
+```
+
+## 本地开发（pnpm）
 
 ```bash
-npm i
-npm run dev
+pnpm i
+pnpm dev
 ```
 
 打开控制台输出的本地地址进行预览（默认 http://localhost:5173）。
 
-## 生产构建
+## 生产构建（pnpm）
 
 ```bash
-npm run build
-npm run preview
+pnpm build
+pnpm preview
 ```
 
 构建产物位于 `dist/`，可直接部署到任意静态资源平台（Vercel、Netlify、Cloudflare Pages 等）。

@@ -1,0 +1,120 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Global styles and glassmorphism enhancements inspired by the original project */
+
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+* {
+  transition: background-color 180ms ease, border-color 180ms ease, color 180ms ease, box-shadow 180ms ease;
+}
+
+/* Glass-like backdrop for buttons */
+.glass-btn {
+  -webkit-backdrop-filter: saturate(180%) blur(8px);
+  backdrop-filter: saturate(180%) blur(8px);
+}
+
+/* Header glass effect with scroll state */
+.glass-header {
+  -webkit-backdrop-filter: saturate(180%) blur(14px);
+  backdrop-filter: saturate(180%) blur(14px);
+  background-color: rgba(255, 255, 255, 0.55);
+  transition: background-color 200ms ease, box-shadow 200ms ease, border-color 200ms ease;
+}
+html.dark .glass-header {
+  background-color: rgba(15, 23, 42, 0.45);
+}
+.glass-header.scrolled {
+  background-color: rgba(255, 255, 255, 0.32);
+  box-shadow: 0 10px 24px rgba(15, 23, 42, 0.12);
+  border-bottom-color: rgba(100, 116, 139, 0.35);
+}
+html.dark .glass-header.scrolled {
+  background-color: rgba(15, 23, 42, 0.35);
+  border-bottom-color: rgba(255, 255, 255, 0.16);
+}
+
+/* Bing background and mouse glow */
+:root {
+  --x: 50%;
+  --y: 50%;
+}
+#bingBg {
+  background-size: cover;
+  background-position: center;
+  filter: saturate(120%) contrast(105%);
+}
+#cursorGlow {
+  pointer-events: none;
+  background: radial-gradient(600px at var(--x) var(--y), rgba(255,255,255,0.28), rgba(255,255,255,0) 60%);
+  mix-blend-mode: overlay;
+}
+html.dark #cursorGlow {
+  background: radial-gradient(600px at var(--x) var(--y), rgba(255,255,255,0.12), rgba(255,255,255,0) 60%);
+}
+
+/* Icon hover shine and wobble */
+.icon-wrap {
+  position: relative;
+  overflow: hidden;
+}
+.icon-wrap::after {
+  content: "";
+  position: absolute;
+  top: -40%;
+  left: -120%;
+  width: 260%;
+  height: 180%;
+  background: linear-gradient(120deg, transparent 35%, rgba(255,255,255,0.35) 50%, transparent 65%);
+  transform: translateX(0);
+}
+.icon-wrap:hover::after {
+  animation: shine 800ms ease forwards;
+}
+.icon-wrap:hover i {
+  animation: wobble 480ms ease;
+}
+@keyframes shine {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(80%); }
+}
+@keyframes wobble {
+  0%   { transform: rotate(0deg) scale(1); }
+  25%  { transform: rotate(6deg) scale(1.12); }
+  50%  { transform: rotate(-4deg) scale(1.08); }
+  75%  { transform: rotate(3deg) scale(1.12); }
+  100% { transform: rotate(0deg) scale(1); }
+}
+
+/* Card tilt effect */
+.tilt {
+  will-change: transform;
+  transform-style: preserve-3d;
+  transition: transform 160ms ease;
+  perspective: 800px;
+}
+
+/* Confetti fallback styles */
+.confetti-piece {
+  position: absolute;
+  width: 8px;
+  height: 12px;
+  border-radius: 2px;
+  opacity: 1;
+  transform: translate(0, 0);
+  will-change: transform, opacity;
+  animation: confPop 160ms ease-out, confFall var(--dur, 1200ms) ease-out forwards;
+}
+@keyframes confPop {
+  0%   { transform: translate(0, 0) scale(0.85); }
+  100% { transform: translate(0, -6px) scale(1); }
+}
+@keyframes confFall {
+  100% { transform: translate(var(--dx, 0px), var(--dy, 160px)) rotate(var(--rot, 720deg)); opacity: 0; }
+}

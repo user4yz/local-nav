@@ -1,8 +1,26 @@
 {
+  "name": "local-nav-heroui",
+  "version": "0.1.0",
+  "private": true,
   "type": "module",
+  "packageManager": "pnpm@10.18.1",
   "scripts": {
-    "build": "esbuild src/index.js --bundle --platform=node --outfile=dist/index.js",
-    "test": "jest",
-    "prepublishOnly": "npm run build"
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview --port 4173",
+    "test": "echo \"No tests configured\" && exit 0"
+  },
+  "dependencies": {
+    "@heroui/react": "2.8.5",
+    "canvas-confetti": "^1.9.3",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^4.3.1",
+    "autoprefixer": "^10.4.20",
+    "postcss": "^8.4.41",
+    "tailwindcss": "^3.4.14",
+    "vite": "^5.4.10"
   }
 }
